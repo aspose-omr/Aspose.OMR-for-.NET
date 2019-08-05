@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using Api;
+    using Generation;
     using Model;
 
     public class Program
@@ -26,6 +27,11 @@
         private static readonly string[] UserImages = new string[] { "Sheet1.jpg", "Sheet2.jpg" };
 
         /// <summary>
+        /// Text markups used in template generation
+        /// </summary>
+        private static readonly string[] GenerationMarkups = new string[] { "Sheet.txt", "Grid.txt", "AsposeTest.txt" };
+
+        /// <summary>
         /// Starting point of the demo
         /// </summary>
         /// <param name="args"></param>
@@ -33,6 +39,9 @@
         {
             // Set license, provide LicensePath and uncomment to test full results
             SetLicense();
+
+            // Create template and image from text
+            Generate();
 
             // Recognize images
             Recognize();
@@ -50,13 +59,86 @@
         }
 
         /// <summary>
-        /// Method demonstrated full OMR workflow.
+        /// Demonstrates template generation workflow
+        /// </summary>
+        public static void Generate()
+        {
+            // input and output preparation
+            string testFolderPath = Path.Combine(FindDataFolder(), TestDataFolderName);
+            testFolderPath = Path.Combine(testFolderPath, "Generation");
+            Console.WriteLine("Test folder located. Path: " + testFolderPath);
+
+            string outputPath = Path.Combine(testFolderPath, "Result");
+            if (!Directory.Exists(outputPath))
+            {
+                Directory.CreateDirectory(outputPath);
+            }
+
+            // initialize engine
+            OmrEngine engine = new OmrEngine();
+
+            for (int i = 0; i < GenerationMarkups.Length; i++)
+            {
+                // call template generation providing path to the txt file with markup
+                GenerationResult res = engine.GenerateTemplate(Path.Combine(testFolderPath, GenerationMarkups[i]));
+
+                // check in case of errors
+                if (res.ErrorCode != 0)
+                {
+                    Console.WriteLine("ERROR CODE: " + res.ErrorCode);
+                }
+
+                // save generation result: image and .omr template
+                res.Save(outputPath, Path.GetFileNameWithoutExtension(GenerationMarkups[i]));
+            }
+        }
+
+        /// <summary>
+        /// Demonstrates main OMR workflow
         /// </summary>
         public static void Recognize()
         {
-            // Set custom threshold to use in recalculation
-            int CustomThreshold = 40;
+            // input and output preparation
+            string testFolderPath = Path.Combine(FindDataFolder(), TestDataFolderName);
+            Console.WriteLine("Test folder located. Path: " + testFolderPath);
 
+            string templatePath = Path.Combine(testFolderPath, TemplateName);
+            string outputPath = Path.Combine(testFolderPath, "Result");
+            if (!Directory.Exists(outputPath))
+            {
+                Directory.CreateDirectory(outputPath);
+            }
+
+            // initialize engine and get template processor providing path to the .omr file
+            OmrEngine engine = new OmrEngine();
+            TemplateProcessor templateProcessor = engine.GetTemplateProcessor(templatePath);
+            Console.WriteLine("Template loaded.");
+
+            // images loop
+            for (int i = 0; i < UserImages.Length; i++)
+            {
+                // path to the image to be recognized
+                string imagePath = Path.Combine(testFolderPath, UserImages[i]);
+                Console.WriteLine("Processing image: " + imagePath);
+
+                // recognize image and recieve result
+                RecognitionResult result = templateProcessor.RecognizeImage(imagePath);
+
+                // export results as csv string
+                string csvResult = result.GetCsv();
+
+                // save csv to the output folder
+                File.WriteAllText(Path.Combine(outputPath, Path.GetFileNameWithoutExtension(UserImages[i]) + ".csv"), csvResult);
+            }
+        }
+
+
+        /// <summary>
+        /// Demonstrates full OMR workflow, including recalculation of existing result
+        /// </summary>
+        public static void RecognizeWithRecalculation()
+        {
+            // input and output preparation
             string testFolderPath = Path.Combine(FindDataFolder(), TestDataFolderName);
             Console.WriteLine("Test folder located. Path: " + testFolderPath);
 
@@ -70,9 +152,15 @@
             // init engine and get template processor
             OmrEngine engine = new OmrEngine();
             TemplateProcessor templateProcessor = engine.GetTemplateProcessor(templatePath);
-
             Console.WriteLine("Template loaded.");
 
+            // Set custom threshold to use in recalculation
+            // this value is in range (0..100)
+            // represents the percentage of required black pixels on bubble image to be recognized
+            // i.e. the lower the value - the less black pixels required for bubble to be counted as filled and vice versa
+            int CustomThreshold = 40;
+
+            // images loop
             for (int i = 0; i < UserImages.Length; i++)
             {
                 string image = UserImages[i];
@@ -105,38 +193,7 @@
             }
         }
 
-        /// <summary>
-        /// Silent and short version of recognition workflow
-        /// </summary>
-        public static void RecognizeShort()
-        {
-            // ---------------------------------------
-            // input and output preparation
-            string testFolderPath = Path.Combine(FindDataFolder(), TestDataFolderName);
-            Console.WriteLine("Test folder located. Path: " + testFolderPath);
 
-            string templatePath = Path.Combine(testFolderPath, TemplateName);
-            string outputPath = Path.Combine(testFolderPath, "Result");
-            if (!Directory.Exists(outputPath))
-            {
-                Directory.CreateDirectory(outputPath);
-            }
-            // ---------------------------------------
-
-
-
-            // actual OMR API calls
-            OmrEngine engine = new OmrEngine();
-            TemplateProcessor templateProcessor = engine.GetTemplateProcessor(templatePath);
-
-            for (int i = 0; i < UserImages.Length; i++)
-            {
-                string imagePath = Path.Combine(testFolderPath, UserImages[i]);
-                string csvResult = templateProcessor.RecognizeImage(imagePath).GetCsv();
-
-                File.WriteAllText(Path.Combine(outputPath, UserImages[i] + ".csv"), csvResult);
-            }
-        }
 
         /// <summary>
         /// Finds specified test data folder

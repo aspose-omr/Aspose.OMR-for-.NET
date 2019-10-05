@@ -1,8 +1,6 @@
-## Aspose.OMR-for-.NET
+# Aspose.OMR-for-.NET
 
 Aspose.OMR for .NET is an optical marks recognition API to recognize optical marks from multiple image formats including JPG, BMP, GIF, TIF, TIFF. After performing OMR operation on these images, API saves the output in CSV format. Moreover, OMR reader API allows capturing human-marked data from documents of different sources like questionnaires, surveys, MCQ papers and more. API recognizes scanned images and even photos from all these sources with high accuracy.
-
-
 
 ## Contents
 
@@ -15,16 +13,18 @@ Directory | Description
 [TestData](TestData)  | The test files used in the examples
 
 ## How to Run the Examples
+
 ### Examples
+
 * You can either clone the repository using your favorite GitHub client or download the ZIP file from here.
-* Extract the contents of ZIP file to any folder on your computer.
+* Extract the contents of the ZIP file to any folder on your computer.
 * Console examples are located in Aspose.OMR.ConsoleDemo folder and Graphical Control examples are located in Aspose.OMR.GuiDemo folder.
 * There is a Visual Studio solution file for the Examples i.e. **Aspose.OMR.Demos.sln**.
 * Open the solution file in Visual Studio and set the appropriate project as the startup project.
-* On first run, the dependencies will automatically be downloaded via NuGet. You may also download the DLLs separately from [here](https://downloads.aspose.com/omr/net)
-* TestData folder at the root contains input files which are used in the examples. It is mandatory that you download the TestData folder along with the examples project.
+* On the first run, the dependencies will automatically be downloaded via NuGet. You may also download the DLLs separately from [here](https://downloads.aspose.com/omr/net)
+* TestData folder at the root contains input files thet are used in the examples. It is mandatory that you download the TestData folder along with the examples project.
 
-Please find more details for how to run the examples [here](https://docs.aspose.com/display/omrnet/How+to+Run+the+Examples).
+Please find more details on how to run the examples [here](https://docs.aspose.com/display/omrnet/How+to+Run+the+Examples).
 
 ## Resources
 

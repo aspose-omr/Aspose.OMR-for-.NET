@@ -1,4 +1,4 @@
-# Aspose.OMR-for-.NET
+# Aspose.OMR for .NET
 
 Aspose.OMR for .NET is an optical marks recognition API to recognize optical marks from multiple image formats including JPG, BMP, GIF, TIF, TIFF. After performing OMR operation on these images, API saves the output in CSV format. Moreover, OMR reader API allows capturing human-marked data from documents of different sources like questionnaires, surveys, MCQ papers and more. API recognizes scanned images and even photos from all these sources with high accuracy.
 

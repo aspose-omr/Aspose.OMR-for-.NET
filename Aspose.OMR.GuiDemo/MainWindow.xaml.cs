@@ -11,9 +11,6 @@
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Test data should be located under "TestData" folder in solution directory
-        private static readonly string TestDataFolderName = @"TestData";
-
         /// <summary>
         /// Template for testing
         /// </summary>
@@ -44,7 +41,7 @@
         /// </summary>
         private void GetButtonClicked(object sender, RoutedEventArgs e)
         {
-            this.DataFolderPath = Path.Combine(FindDataFolder(), TestDataFolderName);
+            this.DataFolderPath = FindDataFolder();
             string templatePath = Path.Combine(this.DataFolderPath, TemplateName);
 
             OmrEngine engine = new OmrEngine();
@@ -126,7 +123,7 @@
         private static string FindDataFolder()
         {
             DirectoryInfo current = new DirectoryInfo(Directory.GetCurrentDirectory());
-            string templateRelPath = Path.Combine(TestDataFolderName, TemplateName);
+            string templateRelPath = Path.Combine("TestData", "OMR", TemplateName);
 
             // Locate test data folder containing .omr file
             while (current != null && !File.Exists(Path.Combine(current.FullName, templateRelPath)))
@@ -140,7 +137,7 @@
                 throw new Exception("Unable to find template file (.omr)");
             }
 
-            return current.FullName;
+            return Path.Combine(current.FullName, "TestData", "OMR");
         }
     }
 }

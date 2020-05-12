@@ -28,6 +28,7 @@
             //PerformOMROnImages.Run();
             //PerformOMRWithThreshold.Run();
             //PerformOMRRecalculation.Run();
+            //OMROperationWithBarcodeRecognition.Run();
 
             // =====================================================
             // =====================================================
@@ -37,8 +38,10 @@
 
             //GenerateTemplates.Run();
             //GenerateTemplateWithImages.Run();
+            //GenerateTemplateWithBarcode.Run();
+            //GenerateTemplatesWithPdfOutput.Run();
 
-           ////////////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////////////
 
             Console.WriteLine();
             Console.WriteLine("Press any key to exit...");
@@ -48,7 +51,7 @@
         private static void SetLicense()
         {
             License lic = new License();
-            String LicensePath = @"Aspose.OMR.lic";
+            String LicensePath = @"";
             lic.SetLicense(LicensePath);
             Console.WriteLine("License is set.");
         }

@@ -34,8 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aspose.OMR, Version=20.3.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>..\packages\Aspose.OMR.20.3.0\lib\net40\Aspose.OMR.dll</HintPath>
+    <Reference Include="Aspose.OMR, Version=20.4.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.OMR.20.4.0\lib\net40\Aspose.OMR.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

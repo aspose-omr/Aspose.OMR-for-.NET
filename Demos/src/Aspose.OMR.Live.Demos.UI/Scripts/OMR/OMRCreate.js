@@ -85,7 +85,15 @@ function generateTemplateLegacy() {
     templateTypeInt--;
     generateTemplate(templateTypeInt);
 }
-
+function showToast(msg) {
+	var toast = $('.toast');
+	if (toast.length <= 0) {
+		toast = $('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000" style="position: fixed; top: 5rem; right: 4rem;"><div class="toast-body">Hello</div></div>');
+	}
+	toast.find('.toast-body').text(msg);
+	$('body').append(toast);
+	toast.toast('show');
+}
 // common function to create all types of template (sheet, survey, test)
 // passed parameter from UI button describes required type of template
 function generateTemplate(templateType) {

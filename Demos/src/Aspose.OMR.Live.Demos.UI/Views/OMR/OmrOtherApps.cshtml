@@ -1,0 +1,16 @@
+﻿@model Aspose.OMR.Live.Demos.UI.Models.OmrOtherAppsViewModel
+
+@section styles {
+    <link href="/css/OMR.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="d-none d-sm-block">
+    <div id="otherapps-panel">
+        @foreach (var app in Model.OtherApps)
+        {
+            <a href="@app.Href"
+               class="otherapps-panel__button @(Model.AppName.ToLower() == app.AppName.ToLower() ? "otherapps-panel__button_current" : "")"
+               style="background-image: url('@app.ImageSource')">@app.AppTitle</a>
+        }
+    </div>
+</div>

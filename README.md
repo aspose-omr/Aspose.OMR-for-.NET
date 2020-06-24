@@ -10,6 +10,7 @@ Directory | Description
 --------- | -----------
 [Aspose.OMR.ConsoleDemo](Aspose.OMR.ConsoleDemo)  | A collection of .NET examples that help you learn and explore the API features
 [Aspose.OMR.GuiDemo](Aspose.OMR.GuiDemo)  | A demonstration of Aspose.OMR graphical control.
+[Demos](Demos)  | Aspose.OMR for .NET Live Demos Source Code
 [TestData](TestData)  | The test files used in the examples
 
 ## How to Run the Examples

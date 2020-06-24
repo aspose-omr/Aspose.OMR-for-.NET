@@ -1,0 +1,21 @@
+{
+  "short_name": "Aspose.OMR apps",
+  "name": "Aspose.OMR apps",
+  "icons": [
+    {
+      "src": "/img/omr/OMR-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/img/omr/OMR-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/omr",
+  "background_color": "#3C7DE7",
+  "display": "standalone",
+  "scope": "/omr/",
+  "theme_color": "#3C7DE7"
+}

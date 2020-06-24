@@ -1,0 +1,103 @@
+﻿@using Aspose.OMR.Live.Demos.UI.Models
+@using Aspose.OMR.Live.Demos.UI.Models.Common
+@using Aspose.OMR.Live.Demos.UI.Resources
+@model Aspose.OMR.Live.Demos.UI.Models.OMRCreateViewModel
+@{
+	ViewBag.Title = AppStrings.OMRCreateTestPageTitle;
+	ViewBag.MetaDescription = AppStrings.OMRCreateTestMetaDescription;
+	ViewBag.JsonLd = Model.JsonLd;
+	ViewBag.JsonLdHowTo = Model.JsonHowto;
+	ViewBag.JsonLdFaq = Model.JsonFaq;
+
+	// social meta tags
+	ViewBag.MetaUrl = "https://products.aspose.app/omr/create-test";
+	ViewBag.MetaImageUrl = "https://www.aspose.cloud/templates/asposeapp/images/products/logo/aspose_create-test-app.png";
+
+	Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+@section scripts {
+	@Scripts.Render("~/scripts/Shared/Alert.js")
+	
+	@Scripts.Render("~/scripts/OMR/OMRCreate.js")
+}
+
+@section styles {
+	
+	<link href="/css/OMR.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="container-fluid asposetools pb5">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12" style="min-height: 450px">
+				<h1 id="ProductTitle">@AppStrings.OMRCreateTestAppPageTitle</h1>
+				<h2 id="ProductTitleSub">@AppStrings.OMRCreateTestAppPageTitleSub</h2>
+				<div id="WorkPlaceHolder">
+					<div class="row">
+						<div class="col-md-12">
+
+							<div class="omrRow">
+								<em class="OMRText">@AppStrings.OMRChooseOutputFormat</em>
+								<div id="outputFormatContainer" class="omrTypes btn-group btn-group-lg " role="group">
+									<button type="button" value="1" onclick="selectOutput(1)" class="btn btn-secondary selected">@Model.OutputFormats[0]</button>
+									<button type="button" value="2" onclick="selectOutput(2)" class="btn btn-secondary">@Model.OutputFormats[1]</button>
+								</div>
+							</div>
+
+							<div class="omrRowSmallerMargin desccontainer">
+								<div class="col-md-6">
+									<ul id="templateDescList" style="text-align: left;">
+										<li class="omrListItem">@Model.TemplateTypes[2].TypeDescription1</li>
+										<li class="omrListItem">@Model.TemplateTypes[2].TypeDescription2</li>
+										<li class="omrListItem">@Model.TemplateTypes[2].TypeDescription3</li>
+									</ul>
+									<button type="button"
+											onclick="generateTemplate(2)"
+											class="btn btn-success btn-lg">
+										@AppStrings.OMRCreateTestButtonContent
+									</button>
+								</div>
+								<div class="col-md-6" style="margin-bottom: 0px;">
+									<div class="omrRowSmallerMargin" style="margin-bottom: 10px;">
+										<img id="omrImage" runat="server"
+											 style="margin-left: 0px; width: 310px; height: 438px;"
+											 src="../../img/omr/Test.png" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="omrRowSmallerMargin" style="margin-top: 0px;">
+							<div id="omrResultContainer">
+								<span class="convertbtn">
+									<button id="omrDownloadButton" type="button" class="btn btn-success btn-lg">
+										@AppStrings.OMRDownloadButton
+										<i class="fa fa-download"></i>
+									</button>
+								</span>
+							</div>
+							<div class="omrRowSmallerMargin" id="omrRecognizeLink">
+								<a class="btn btn-link" target="_blank" style="color: white;" href="scan-test">Scan Tests &nbsp;<i class="fa fa-file-image-o"></i></a>
+								
+							</div>
+							<div id="omrLoader" class="spinner-border text-success" role="status">
+								<span class="sr-only">Loading...</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@{
+	Html.RenderPartial("OmrOtherApps", OmrOtherAppsViewModel.OmrCreateTest);
+
+	
+	Html.RenderPartial("HowToSection", HowToSectionModel.OMRCreateTest);
+	
+
+	Html.RenderPartial("AppProductSection", AppProductSectionModel.OMRCreateTest);
+	Html.RenderPartial("AppFeaturesSection", AppFeaturesSectionModel.OMRCreate);
+	
+}

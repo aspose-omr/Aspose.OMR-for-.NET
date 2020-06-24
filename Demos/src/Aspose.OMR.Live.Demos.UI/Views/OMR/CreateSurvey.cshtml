@@ -1,0 +1,104 @@
+﻿@using Aspose.OMR.Live.Demos.UI.Models
+@using Aspose.OMR.Live.Demos.UI.Models.Common
+@using Aspose.OMR.Live.Demos.UI.Resources
+@model Aspose.OMR.Live.Demos.UI.Models.OMRCreateViewModel
+@{
+	ViewBag.Title = AppStrings.OMRCreateSurveyPageTitle;
+	ViewBag.MetaDescription = AppStrings.OMRCreateSurveyMetaDescription;
+	ViewBag.JsonLd = Model.JsonLd;
+	ViewBag.JsonLdHowTo = Model.JsonHowto;
+	ViewBag.JsonLdFaq = Model.JsonFaq;
+
+	// social meta tags
+	ViewBag.MetaUrl = "https://products.aspose.app/omr/create-survey";
+	ViewBag.MetaImageUrl = "https://www.aspose.cloud/templates/asposeapp/images/products/logo/aspose_create-survey-app.png";
+
+	Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+@section scripts {
+	@Scripts.Render("~/scripts/Shared/Alert.js")
+	
+	@Scripts.Render("~/scripts/OMR/OMRCreate.js")
+}
+
+@section styles {
+	
+	<link href="/css/OMR.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="container-fluid asposetools pb5">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12" style="min-height: 450px">
+				<h1 id="ProductTitle">@AppStrings.OMRCreateSurveyAppPageTitle</h1>
+				<h2 id="ProductTitleSub">@AppStrings.OMRCreateSurveyAppPageTitleSub</h2>
+				<div id="WorkPlaceHolder">
+					<div class="row">
+						<div class="col-md-12">
+
+							<div class="omrRow">
+								<em class="OMRText">@AppStrings.OMRChooseOutputFormat</em>
+								<div id="outputFormatContainer" class="omrTypes btn-group btn-group-lg " role="group">
+									<button type="button" value="1" onclick="selectOutput(1)" class="btn btn-secondary selected">@Model.OutputFormats[0]</button>
+									<button type="button" value="2" onclick="selectOutput(2)" class="btn btn-secondary">@Model.OutputFormats[1]</button>
+								</div>
+							</div>
+
+							<div class="omrRowSmallerMargin desccontainer">
+								<div class="col-md-6">
+									<ul id="templateDescList" style="text-align: left;">
+										<li class="omrListItem">@Model.TemplateTypes[1].TypeDescription1</li>
+										<li class="omrListItem">@Model.TemplateTypes[1].TypeDescription2</li>
+										<li class="omrListItem">@Model.TemplateTypes[1].TypeDescription3</li>
+									</ul>
+									<button type="button"
+											onclick="generateTemplate(1)"
+											class="btn btn-success btn-lg">
+										@AppStrings.OMRCreateSurveyButtonContent
+									</button>
+								</div>
+								<div class="col-md-6" style="margin-bottom: 0px;">
+									<div class="omrRowSmallerMargin" style="margin-bottom: 10px;">
+										<img id="omrImage" runat="server"
+											 style="margin-left: 0px; width: 310px; height: 438px;"
+											 src="../../img/omr/Survey.png" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="omrRowSmallerMargin" style="margin-top: 0px;">
+							<div id="omrResultContainer">
+								<span class="convertbtn">
+									<button id="omrDownloadButton" type="button" class="btn btn-success btn-lg">
+										@AppStrings.OMRDownloadButton
+										<i class="fa fa-download"></i>
+									</button>
+								</span>
+							</div>
+							<div class="omrRowSmallerMargin" id="omrRecognizeLink">
+								<a class="btn btn-link" target="_blank" style="color: white;" href="scan-survey">Scan Surveys &nbsp;<i class="fa fa-file-image-o"></i></a>
+								
+							</div>
+							<div id="omrLoader" class="spinner-border text-success" role="status">
+								<span class="sr-only">Loading...</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@{
+	Html.RenderPartial("OmrOtherApps", OmrOtherAppsViewModel.OmrCreateSurvey);
+
+	
+	Html.RenderPartial("HowToSection", HowToSectionModel.OMRCreateSurvey);
+
+	
+
+	Html.RenderPartial("AppProductSection", AppProductSectionModel.OMRCreateSurvey);
+	Html.RenderPartial("AppFeaturesSection", AppFeaturesSectionModel.OMRCreate);
+	
+}

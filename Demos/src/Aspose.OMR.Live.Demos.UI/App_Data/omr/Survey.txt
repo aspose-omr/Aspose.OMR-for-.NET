@@ -1,0 +1,40 @@
+#How would you describe our product? Select all that apply.
+	() High quality () Poor quality
+	() Reliable () Impractical
+	() Good price () Overpriced
+	() Easy to use () Too complicated
+
+#How well do our product meet your needs?
+	() Extremely Well () Very well () Somewhat well 
+	() Not so well () Not well at all
+
+#How would you rate the quiality of the product:
+	() Very high quality () High quality () Average quality 
+	() Low quality () Very low quality
+
+#How would you rate value for money of the product:
+	() Excellent () Above average () Average () Below average () Poor
+
+#How responsive have we been to your questions or concerns about our products?
+	() Extremely responsive () Very responsive
+	() Somewhat responsive () Not so responsive 
+	() Not responsive at all () Not applicable
+
+#How long have you been a customer of our company?
+	() This is my first purchase () Less than six months 
+	() Six months to a year	() 1 - 2 years 
+	() 3 or more years () I'm not a customer yet
+
+#How likely are you to purchase any of our products again?
+	() Very likely () Somewhat likely () Not likely
+
+#Overall, how satisfied are you with our company?
+	() Very satisfied () Somewhat satisfied () Not satisfied 
+
+#How likely is it that you would reccomend our company to a friend or colleague?
+	(1) (2) (3) (4) (5) (6) (7) (8) (9)
+
+#Compared to our competitors, is our product quality better, worse, or about the same?
+	() Better () The same () Worse
+?image=logo.png
+	align=center

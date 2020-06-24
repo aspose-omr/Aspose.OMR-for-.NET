@@ -1,0 +1,107 @@
+﻿@using Aspose.OMR.Live.Demos.UI.Models
+@using Aspose.OMR.Live.Demos.UI.Models.Common
+@using Aspose.OMR.Live.Demos.UI.Resources
+@model Aspose.OMR.Live.Demos.UI.Models.OMRScanViewModel
+@{
+	ViewBag.Title = AppStrings.OMRScanAnswerSheetPageTitle;
+	ViewBag.MetaDescription = AppStrings.OMRScanAnswerSheetMetaDescription;
+	ViewBag.JsonLd = Model.JsonLd;
+	ViewBag.JsonLdHowTo = Model.JsonHowto;
+	ViewBag.JsonLdFaq = Model.JsonFaq;
+
+	// social meta tags
+	ViewBag.MetaUrl = "https://products.aspose.app/omr/scan-answer-sheet";
+	ViewBag.MetaImageUrl = "https://www.aspose.cloud/templates/asposeapp/images/products/logo/aspose_scan-answersheet-app.png";
+
+	Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+@section scripts {
+	@Scripts.Render("~/scripts/Shared/Alert.js")
+	
+	@Scripts.Render("~/scripts/OMR/OMRScan.js")
+}
+@section styles {
+	
+	<link href="/css/OMR.css" rel="stylesheet" type="text/css" />
+}
+<div class="container-fluid asposetools pb5">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 pt-5 pb-5" style="min-height:450px">
+				<h1 id="ProductTitle">@AppStrings.OMRScanAnswerSheetAppTitle</h1>
+				<h2 id="ProductTitleSub">@AppStrings.OMRScanAnswerSheetAppTitleSub <a href="create-answer-sheet" target="_self" style="color: white; text-decoration: underline!important">Create Answer Sheet</a> @AppStrings.OMRApplicationString</h2>
+
+				<div id="WorkPlaceHolder">
+
+					<div class="omrRow">
+						<div class="filedrop filedrop-mvc fileplacement" id="filedrop">
+							<label for="UploadFileInput-1" style="margin-top: 50px; text-decoration: underline">Drop or upload your files</label>
+							<input id="omrUploadFile" type="file" class="uploadfileinput" name="UploadFileInput-1" accept=".jpg,.png,.bmp,.tiff,.gif,.jpeg">
+							<div class="fileupload" style="">
+								<span class="filename">
+									<a onclick="removefile()">
+										<label id="fileNameLabel" for="uploadfileinput" class="custom-file-upload"></label>
+										<i class="fa fa-times">
+										</i>
+									</a>
+								</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="omrRowSmallerMargin" id="questionNumContainer" style="margin-top: 10px;">
+						<em class="OMRText" style="text-align: center;">@AppStrings.OMRQuestionsString</em>
+						<div id="questionNum" class="omrTypes omrOptions btn-group" role="group">
+							<button type="button" value="1" onclick="selectQuestionNum(1)" class="btn btn-secondary">@Model.QuestionsNum[0]</button>
+							<button type="button" value="2" onclick="selectQuestionNum(2)" class="btn btn-secondary selected">@Model.QuestionsNum[1]</button>
+							<button type="button" value="3" onclick="selectQuestionNum(3)" class="btn btn-secondary">@Model.QuestionsNum[2]</button>
+							<button type="button" value="4" onclick="selectQuestionNum(4)" class="btn btn-secondary">@Model.QuestionsNum[3]</button>
+						</div>
+					</div>
+
+					<div class="omrRow">
+						<em class="OMRText">@AppStrings.OMRChooseOutputFormat</em>
+						<div id="outputFormatContainer" class="omrTypes btn-group btn-group-lg " role="group">
+							<button type="button" value="1" onclick="selectOutput(1)" class="btn btn-secondary selected">@Model.OutputFormats[0]</button>
+							<button type="button" value="2" onclick="selectOutput(2)" class="btn btn-secondary">@Model.OutputFormats[1]</button>
+						</div>
+					</div>
+					<div class="omrRowSmallerMargin convertbtn">
+						<button type="button" onclick="scanOMRImage(0)" class="btn btn-success btn-lg">@AppStrings.OMRScanAnswerSheetButton</button>
+					</div>
+					<div class="omrRowSmallerMargin">
+						<div id="recognitionLoader" class="spinner-border text-success" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div id="recognitionResult">
+							<pre id="OMRResultText" style="max-height: 200px;"></pre>
+						</div>
+						<div class="omrRowSmallerMargin convertbtn" id="OMRResultBlock">
+							<button id="omrCopyButton" type="button" class="btn btn-success btn-lg" onclick="copyToClibpoard()">@AppStrings.OMRCopyButton</button>
+							<button id="omrDownloadButton" type="button" class="btn btn-success btn-lg">
+								@AppStrings.OMRDownloadButton
+								<i class="fa fa-download"></i>
+							</button>
+						</div>
+						<div class="omrRowSmallerMargin" id="omrRecognizeLink">
+							<a class="btn btn-link" target="_blank" style="color: white;" href="create-answer-sheet">Create Answer Sheets &nbsp;<i class="fa fa-file-image-o"></i></a>
+							
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+@{
+	Html.RenderPartial("OmrOtherApps", OmrOtherAppsViewModel.OmrScanAnswerSheet);
+	
+	
+	Html.RenderPartial("HowToSection", HowToSectionModel.OMRScanAnswerSheet);
+	
+	Html.RenderPartial("AppProductSection", AppProductSectionModel.OMRScanAnswerSheet);
+
+	Html.RenderPartial("AppFeaturesSection", AppFeaturesSectionModel.OMRScan);
+	
+}

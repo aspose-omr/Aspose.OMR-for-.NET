@@ -25,7 +25,7 @@
             // =====================================================
             // =====================================================
 
-            //PerformOMROnImages.Run();
+            PerformOMROnImages.Run();
             //PerformOMRWithThreshold.Run();
             //PerformOMRRecalculation.Run();
             //OMROperationWithBarcodeRecognition.Run();

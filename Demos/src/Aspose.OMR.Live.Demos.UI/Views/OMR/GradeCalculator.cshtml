@@ -1,0 +1,125 @@
+﻿@using Aspose.OMR.Live.Demos.UI.Models
+@using Aspose.OMR.Live.Demos.UI.Models.Common
+@using Aspose.OMR.Live.Demos.UI.Resources
+@model Aspose.OMR.Live.Demos.UI.Models.OMRGradeCalculatorViewModel
+
+@{
+	ViewBag.Title = AppStrings.OMRGradeCalculatorPageTitle;
+	ViewBag.MetaDescription = AppStrings.OMRGradeCalculatorMetaDescription;
+	ViewBag.MetaKeywords = "";
+	ViewBag.JsonLd = Model.JsonLd;
+	ViewBag.JsonLdHowTo = Model.JsonHowto;
+	ViewBag.JsonLdFaq = Model.JsonFaq;
+
+	// social meta tags
+	ViewBag.MetaUrl = "https://products.aspose.app/omr/grade-calculator";
+	ViewBag.MetaImageUrl = "https://www.aspose.cloud/templates/asposeapp/images/products/logo/aspose_grade-calculator-app.png";
+
+	Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+@section scripts {
+	@Scripts.Render("~/scripts/Shared/Alert.js")
+	
+	@Scripts.Render("~/scripts/OMR/GradeCalculator.js")
+}
+
+@section styles {
+	
+	<link href="/css/OMR.min.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="container-fluid asposetools pb5">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12" style="min-height: 450px">
+				<h1 id="ProductTitle">@AppStrings.OMRGradeCalculatorAppName</h1>
+				<h2 id="ProductTitleSub">@AppStrings.OMRGradeCalculatorTitleSub</h2>
+
+				<div class="omrRowSmallerMargin">
+					<em class="OMRText">@AppStrings.OMRChooseGradingScale</em>
+					<div id="gradingScaleContainer" class="omrTypes btn-group btn-group-lg " role="group">
+						<button type="button" title="Common 5-points A/B/C/D/F system" value="1" onclick="selectScaling(1)" class="btn btn-secondary selected">@Model.GradingScales[0]</button>
+						<button type="button" title="Extended 12-points system that uses +/- grades" value="2" onclick="selectScaling(2)" class="btn btn-secondary">@Model.GradingScales[1]</button>
+					</div>
+				</div>
+
+				<form id="calcForm" class="omrCalculatorForm">
+					<div class="omrRowSmallerMargin calculator row">
+						<div class="col">
+							<label for="qNumber" class="OMRText">@AppStrings.OMRGradeCalculatorQuestionsNumber</label>
+							<input type="number" min="0" step="1" max="10000" id="qNumber" class="omrInput" />
+						</div>
+						<div class="col">
+							<label for="wrongNumber" class="OMRText">@AppStrings.OMRGradeCalculatorWrongAnswers</label>
+							<input type="number" min="0" step="1" id="wrongNumber" class="omrInput" />
+						</div>
+					</div>
+
+					<div class="omrRowSmallerMargin calculator row">
+						<div class="col-md-4">
+							<label class="omrCheckboxContainer OMRTextNoMargin">
+								@AppStrings.OMRGradeCalculatorShowDecimals
+								<input type="checkbox" id="showDecimal" onchange="calculateResult()">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div class="col-md-4">
+							<label class="omrCheckboxContainer OMRTextNoMargin">
+								@AppStrings.OMRGradeCalculatorShowQuickChart
+								<input type="checkbox" id="showQuickChart" checked="checked" onchange="showQuickChartUpdate()">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div class="col-md-4">
+							<label class="omrCheckboxContainer OMRTextNoMargin">
+								@AppStrings.OMRGradeCalculatorShowGradeChart
+								<input type="checkbox" id="showChart" onchange="showChartUpdate()">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+					</div>
+					<div class="omrRowSmallerMargin calculator row">
+						<div class="col">
+							<label for="percentRes" class="OMRText">@AppStrings.OMRGradeCalculatorPercentageGrade</label>
+							<input type="text" id="percentRes" class="omrInput form-control form-control-lg" readonly />
+						</div>
+						<div class="col">
+							<label for="letterRes" class="OMRText">@AppStrings.OMRGradeCalculatorLetterGrade</label>
+							<input type="text" id="letterRes" class="omrInput form-control form-control-lg" readonly />
+						</div>
+						<div class="col">
+							<label for="fractionRes" class="OMRText">@AppStrings.OMRGradeCalculatorFractionGrade</label>
+							<input type="text" id="fractionRes" class="omrInput form-control form-control-lg" readonly />
+						</div>
+					</div>
+
+					<div class="omrRowSmallerMargin calculatorNoBottomPadding" id="quickChartSection">
+						<label class="OMRText">@AppStrings.OMRGradeCalculatorQuickChart</label>
+
+						<div class="quickChartDiv omrRowSmallerMargin"></div>
+					</div>
+
+					<div class="omrRowSmallerMargin calculatorNoBottomPadding" id="chartSection">
+						<label class="OMRText">@AppStrings.OMRGradeCalculatorGradeChart</label>
+
+						<div class="chartDiv omrRowSmallerMargin"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+@{
+	Html.RenderPartial("OmrOtherApps", OmrOtherAppsViewModel.OmrGradeCalculator);
+
+	
+	Html.RenderPartial("HowToSection", HowToSectionModel.OMRGradeCalculator);
+
+	
+
+	Html.RenderPartial("AppProductSection", AppProductSectionModel.OMRGradeCalculator);
+	Html.RenderPartial("AppFeaturesSection", AppFeaturesSectionModel.OMRGradeCalculator);
+	
+}

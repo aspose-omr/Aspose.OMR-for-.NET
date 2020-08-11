@@ -3,6 +3,7 @@ title: Aspose.OMR for .NET
 type: docs
 weight: 10
 url: /net/
+is_root: true
 ---
 
 ## Aspose.OMR for .NET

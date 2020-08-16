@@ -1,6 +1,6 @@
-# Aspose.OMR for .NET
+# .NET OMR API
 
-Aspose.OMR for .NET is an optical marks recognition API to recognize optical marks from multiple image formats including JPG, BMP, GIF, TIF, TIFF. After performing OMR operation on these images, API saves the output in CSV format. Moreover, OMR reader API allows capturing human-marked data from documents of different sources like questionnaires, surveys, MCQ papers and more. API recognizes scanned images and even photos from all these sources with high accuracy.
+Aspose.OMR for .NET is an [Optical Mark Recognition API](https://products.aspose.com/omr/net) to recognize optical marks from multiple image formats including JPG, BMP, GIF, TIF, TIFF. After performing OMR operation on these images, API saves the output in CSV format. Moreover, OMR reader API allows capturing human-marked data from documents of different sources like questionnaires, surveys, MCQ papers and more. API recognizes scanned images and even photos from all these sources with high accuracy.
 
 <p align="center">
 
@@ -15,22 +15,17 @@ Directory | Description
 --------- | -----------
 [Aspose.OMR.ConsoleDemo](Aspose.OMR.ConsoleDemo)  | A collection of .NET examples that help you learn and explore the API features
 [Aspose.OMR.GuiDemo](Aspose.OMR.GuiDemo)  | A demonstration of Aspose.OMR graphical control.
-[Demos](Demos)  | Aspose.OMR for .NET Live Demos Source Code
-[TestData](TestData)  | The test files used in the examples
+[TestData](TestData)  | The test files used in the examples.
+[Demos](Demos)  | Source code for the live demos hosted at https://products.aspose.app/omr/family.
 
-# .NET API to Perform OMR
 
-It is a standalone on-premise API that helps in [recognizing the human-marked data](https://docs.aspose.com/display/omrnet/Perform+OMR+on+Images) from images of scanned documents, surveys, questionnaires, quizzes and examination papers.
+## OMR Features
 
-[Aspose.OMR for .NET](https://products.aspose.com/omr/net) not only acts as an Optical Mark Recognition engine. It also provides a handy [graphical control](https://docs.aspose.com/display/omrnet/Working+with+Graphical+Control) which can be used for manual tuning of the threshold and markup to see changes in the real-time.
-
-## OMR API Features
-
-- [Recognition of scanned images](https://docs.aspose.com/display/omrnet/Perform+OMR+on+Images) and photos.
-- Ability to process rotated and perspective (side viewed) images.
+- [Extract human marked data from images](https://docs.aspose.com/omr/net/perform-omr-on-images/).
+- Process rotated and perspective (side viewed) images.
 - Recognize data from tests, exams, questionnaires, surveys etc.
 - High accuracy rate & ability to export the results in CSV format.
-- [Create OMR templates](https://docs.aspose.com/display/omrnet/Create+OMR+Template) from text markup.
+- [Create OMR templates](https://docs.aspose.com/omr/net/create-omr-template/) from text markup.
 
 ## Save OMR Results As
 
@@ -44,19 +39,36 @@ JPEG, PNG, GIF, TIFF, BMP
 
 Aspose.OMR for .NET API is written in C# and can be used to build 32-bit and 64-bit applications targeting .NET Framework 4.0 and higher.
 
-## Getting Started with Aspose.OMR for .NET
+## Get Started with Aspose.OMR for .NET
 
 Are you ready to give Aspose.OMR for .NET a try? Simply execute `Install-Package Aspose.OMR` from Package Manager Console in Visual Studio to fetch the NuGet package. If you already have Aspose.OMR for .NET and want to upgrade the version, please execute `Update-Package Aspose.OMR` to get the latest version.
 
-Simply execute the below code snippet to see how Aspose.OMR API performs in your environment or check the [GitHub Repository](https://github.com/aspose-omr/Aspose.OMR-for-.NET) for other common usage scenarios. 
-
-## Perform OMR on a JPG Image & Get Results in the CSV format
+## Perform OMR on a JPG Image & Get Results in a CSV
 
 ```csharp
-// recognize image and receive result
-RecognitionResult result = templateProcessor.RecognizeImage(dir + "template.jpg");
-// export results as a CSV string
-string csvResult = result.GetCsv();
+string TemplateName = "Sheet.omr";
+string[] UserImages = 
+new string[] { "Sheet1.jpg", "Sheet2.jpg" };
+
+// input and output preparation
+string testFolderPath = RunExamples.GetSourceDir();
+string templatePath = Path.Combine(testFolderPath, TemplateName);
+string outputPath = RunExamples.GetResultDir();
+
+// actual OMR API calls
+OmrEngine engine = new OmrEngine();
+TemplateProcessor templateProcessor = engine.GetTemplateProcessor(templatePath);
+Console.WriteLine("Template loaded.");
+
+for (int i = 0; i < UserImages.Length; i++)
+{
+    string imagePath = Path.Combine(testFolderPath, UserImages[i]);
+    string csvResult = templateProcessor.RecognizeImage(imagePath).GetCsv();
+
+    File.WriteAllText(Path.Combine(outputPath, UserImages[i] + ".csv"), csvResult);
+    Console.WriteLine("Result exported. Path: " + Path.Combine(outputPath, UserImages[i] + ".csv"));
+}
+Console.WriteLine("PerformOMROnImages executed successfully.\n\r");
 ```
 
-[Product Page](https://products.aspose.com/omr/net) | [Docs](https://docs.aspose.com/display/omrnet/Home) | [Demos](https://products.aspose.app/omr/family) | [API Reference](https://apireference.aspose.com/omr/net) | [Examples](https://github.com/aspose-omr/Aspose.OMR-for-.NET) | [Blog](https://blog.aspose.com/category/omr/) | [Free Support](https://forum.aspose.com/c/omr) |  [Temporary License](https://purchase.aspose.com/temporary-license)
+[Home](https://www.aspose.com/) | [Product Page](https://products.aspose.com/omr/net) | [Docs](https://docs.aspose.com/omr/net/) | [Demos](https://products.aspose.app/omr/family) | [API Reference](https://apireference.aspose.com/omr/net) | [Examples](https://github.com/aspose-omr/Aspose.OMR-for-.NET) | [Blog](https://blog.aspose.com/category/omr/) | [Free Support](https://forum.aspose.com/c/omr) |  [Temporary License](https://purchase.aspose.com/temporary-license)

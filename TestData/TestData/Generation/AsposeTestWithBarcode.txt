@@ -1,4 +1,10 @@
-?image=Aspose.jpg
+?barcode=AsposeWebsite
+	value=aspose.com
+	barcode_type=qr
+	qr_version=1
+	x=2000
+	y=120
+	height=360
 
 ?text=Name__________________________________              Date____________
 
@@ -25,5 +31,5 @@
 
 ?text=				Answer sheet section
 ?answer_sheet=MainQuestions
-	elements_count=50
+	elements_count=30
 	columns_count=5

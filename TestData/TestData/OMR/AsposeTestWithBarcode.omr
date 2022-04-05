@@ -11,8 +11,8 @@
 					"Name": "AsposeWebsite",
 					"Width": 360,
 					"Height": 360,
-					"Top": 120,
-					"Left": 2000,
+					"Top": 250,
+					"Left": 1900,
 					"BarcodeType": "QR",
 					"QrVersion": 1
 				},

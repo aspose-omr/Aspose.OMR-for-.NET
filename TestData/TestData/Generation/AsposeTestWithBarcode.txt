@@ -2,8 +2,8 @@
 	value=aspose.com
 	barcode_type=qr
 	qr_version=1
-	x=2000
-	y=120
+	x=1900
+	y=250
 	height=360
 
 ?text=Name__________________________________              Date____________
